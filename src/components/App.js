@@ -1,5 +1,5 @@
 import React from "react";
-// import MovieItem from "./MovieItem";
+import MovieItem from "./MovieItem";
 import { API_KEY_3 } from "../utils";
 
 class App extends React.Component {
@@ -11,19 +11,22 @@ class App extends React.Component {
       })
       .then(data => {
         console.log(data);
-        // update this.state.movie, this.state.isFetched
+        this.setState({
+          movie: data.results,
+          isFetched: true
+        });
       });
-  }
-
+    }
   render() {
+    const { movie } = this.state;
     return (
       <div className="container">
-        <div className="row">{/*
-            <MovieItem />
-          */}</div>
+        <div className="row">
+          <MovieItem movie={movie} />
+        </div>
       </div>
     );
   }
-}
+  }
 
 export default App;
